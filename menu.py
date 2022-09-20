@@ -64,3 +64,28 @@ for cch in 'python':
   if cch == 'o':
     continue
   print(cch)
+
+################# break
+for cch in 'python':
+  if cch=='o':
+    break 
+  print(cch)
+############### 
+for i in 'web':
+  print(i)
+else:
+  print('stop loop')
+################ even number
+for i in range(1,20):
+  if i in (1,3,5,7,9,11,13,15,17,19):
+    continue
+  print(i)
+
+############### vowel found
+while True:
+  vowels=input("enter vowel: ")
+  if vowels.lower() in 'aeiou':
+    print("vowel found")
+    break
+
+
