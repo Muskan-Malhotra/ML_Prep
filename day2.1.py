@@ -86,3 +86,56 @@ else:
 
 
 
+###############Leap year ##############
+y = 2025
+if( y%4 == 0 and y%100 == 0):
+  print("Leap year")
+else:
+  print("Not leap year")
+
+###############temp check #############
+temp=35;rain='no';hum=50
+if temp == 15 and rain == 'no' and hum == 20:
+  print('cold day')
+elif temp == 35 and rain == 'no' and hum == 50:
+  print('hot day')
+elif rain=='yes':
+  print('rainy day')
+else:
+  print('normal day')
+
+
+###############################################
+UN = input('enter un: ')
+
+if UN == 'admin':
+  PW=input('enter pw: ')
+  if PW=='admin1234':
+    print('success')
+  else:
+    print('invalid username')
+    
+
+################# QUESTION ########################
+'''
+bank application
+deposit -> 1,50,000
+if deposit -> more than 5,00,000  
+2) deposit ->20,000 to 5,00,000
+3)deposit -> 1000-20,000
+4) deposit -> 1000, less than 1000 -> i deposit right now
+'''
+#############################################
+
+deposit = int(input("Enter the amount to be deposited: "))
+if(deposit == 150000):
+  print("Thank you for depositing")
+elif(deposit>500000):
+  print("Need to deposite PAN card copy")
+elif(deposit >=20000 and deposit<500000):
+  print("Please print your receipt")
+elif(deposit >=1000 and deposit<20000):
+  print("Thank you for choosing us!")
+elif(deposit<1000):
+  print("Need to maintain minimum balance as per policies")
+
