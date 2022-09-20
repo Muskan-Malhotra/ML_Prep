@@ -239,10 +239,10 @@
 12345
 '''
 
-for i in range(1,7):
-  for j in range (i):
-    print(i,end='')
-  print()
+# for i in range(1,7):
+#   for j in range (i):
+#     print(i,end='')
+#   print()
 
 
 '''
@@ -255,4 +255,144 @@ for i in range(1,7):
 '''
 
 
+
+from random import *
+random()
+randrange(1,10,2)
+randrange(1,10,2)
+randrange(1,10,2)
+
+randint(1,6)
+
+uniform(1,5)
+uniform(1,5)
+
+choice('python')
+choice('python')
+choice('python')
+
+from math import *
+sqrt(16)
+
+round(2.3456,3)
+s1='python'
+l1=[2,5,'l','k','o','p']
+shuffle(l1)
+l1
+
+
+###############QUESTION####################
+'''
+guessing num -> random number from 1 to 20
+player enter the number from 1 to 20
+
+guessing num...random number from 1-20
+
+player....enter num from 1-20
+if palyer and guessing num....win the game otherwise write loose the game
+'''
+
+m=random.randint(1,20)
+n=int(input("Enter number to be guessed "))
+if n == m:
+    print("You won!!")
+
+else:
+    print("You lost and correct number is ",m)
+
+'''
+'welcome scientific calculator'
+1.percentage....ask number..5% of 100
+2.sqrt...ask number 16
+3.lcm....ask number...
+4.exit...stop working
+
+if selected 5....invalid option and repeate loop
+if instead of number enter string...invalid value...all to enter again the number
+'''
+import math
+print('Welcome Scientific Calculator')
+print("1.Percentage")
+print("2.Square Root")
+print("3.LCM")
+print("4.Exit")
+n = int(input("Press the key: "))
+while n != 4 :
+   
+    if n == 1:
+        a = int(input("Enter the share: "))
+        b = int(input("Enter the amount: "))
+        print("Percentage amount: ",(a / 100) * b)
+   
+    elif n == 2:
+        a = int(input("Enter the number: "))
+        print("Square root: ",math.sqrt(a))
+   
+    elif n == 3:
+        a = int(input("Enter first number: "))
+        b = int(input("Enter second number: "))
+        i = max(a,b)
+        j = min(a,b)
+        for k in range(1,j+1):
+            if (i*k) % j == 0 :
+                lcm = i*k
+                break
+        print("LCM: ",lcm)
+               
+    elif n == 4 :
+        break
+   
+    else :
+        print("Invalid Choice")
+   
+    print('Welcome Scientific Calculator')
+    print("1.Percentage")
+    print("2.Square Root")
+    print("3.LCM")
+    print("4.Exit")
+    n = int(input("Press the key"))
+print("Exit")
+
+
+
+
+################################
+
+    
+
+print('WELCOME TO SCIENTIFIC CALCULATOR')
+print('1.Percentage')
+print('2.Square root')
+print('3.LCM')
+print('4.Exit')
+
+while True:
+    choice = int(input('Enter number between 1-4: '))
+    if choice == 1:
+        num = int(input('Enter the number whose percentage is to be find: '))
+        num1 = int(input('Enter the percentage value: '))
+        ans = num * (num1/100)
+        print(ans)
+    elif choice == 2:
+        num2 = int(input('Enter the number: '))
+        numSqrt = num2 ** 0.5
+        print(numSqrt)
+    elif choice == 3:
+        x = int(input('Enter first number: '))
+        y = int(input('Enter second number: '))
+        if x > y:
+            lcm = x
+        else:
+            lcm = y
+        while (True):
+            if ((lcm % x == 0) and (lcm % y == 0)):
+                d = lcm
+                break
+            lcm += 1
+        print('LCM is', d)
+    elif choice == 4:
+        print('EXIT')
+    else:
+        print('You entered wrong choice!!!')
+        print('Enter the value again: ')
 
