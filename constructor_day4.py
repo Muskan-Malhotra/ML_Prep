@@ -318,4 +318,74 @@ print(issubclass(Calci1,Calci2))
 
 
 ############ Operator Overiding ##############
+class Animal: 
+    def speak(self): 
+        print("speaking") 
+class Dog(Animal): 
+    def speak(self): 
+        print("Barking") 
+d = Dog() 
+d.speak()
+
+########## Encapsulation #################
+class Bag:
+   def __init__(self):
+      self.a = "Bag-a"
+      self._b = "Bag-b"
+      self.__c = "Bag-c"
+b1 = Bag()
+print("a value:",b1.a)
+print("b value:",b1._b)
+print("c value:",b1._Bag__c)
+# print("c value:",b1.__c)
+
+################## data abstraction ###############
+class Employee:
+  __count=0
+  def __init__(self):
+    Employee.__count=Employee.__count+1
+  def display(self):
+    print("The number of employees",Employee.__count)
+
+e1=Employee()
+e1.display()
+e2=Employee()
+e2.display()
+print(e1.__count)
+
+class Employee:
+  __count = 0
+  def __init__(self):
+    Employee.__count = Employee.__count+1
+  def display(self):
+    print("The number of employees",Employee.__count)
+e1 = Employee()
+e1.display()
+e2 = Employee()
+e2.display()
+print(e1.__count)
+
+##################### Polymorphism #############
+class Cat:
+  def sound(self):
+          print ("meow!")
+class Dog:
+  def sound(self):
+          print ("Woof woof!")
+def makeSound(animalType):
+  animalType.sound()
+
+catObj = Cat()
+dogObj = Dog()
+makeSound(catObj)
+makeSound(dogObj)
+
+
+
+
+
+
+
+
+
 
