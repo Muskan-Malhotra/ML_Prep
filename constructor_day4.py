@@ -210,7 +210,7 @@ print(s1.color,s1.height,s1.look)
 '''
 
 ######################################
-
+'''
 class Point:
   def __init__(self, x , y ):
     self.x = x
@@ -229,6 +229,51 @@ p3=p1+p2 # Call method by using operator
 print(p3)
 print(p1.__add__(p2)) # call method by name
 print(Point.__add__(p1,p2)) # call method name with class
+'''
+
+##########################################
+
+class Point:
+  def __init__(self, x , y ):
+    self.x = x
+    self.y = y
+
+  def  __str__(self):
+    return"Point(%d,%d)"%(self.x,self.y)
+
+  def __add__(self,other):
+    x = self.x + other.x
+    y = self.y + other.y
+    return Point(x,y)
+  def __sub__(self,other):
+    x=self.x-other.x
+    y=self.y-other.y
+    return Point(x,y)
+  def __mul__(self,other):
+    x=self.x*other.x
+    y=self.y*other.y
+    return Point(x,y)
+  def __truediv__(self,other):
+    x=self.x/other.x
+    y=self.y/other.y
+    return Point(x,y)
+
+ 
+p1=Point(2,3)
+print('p1 data:',p1)
+p2=Point(-1,2)
+p3=p1+p2# Call method by using operator
+print(p3)
+print(p1.__add__(p2)) # call method by name
+print(Point.__add__(p1,p2)) # call method name with cla
+print(p1.__sub__(p2)) 
+print(Point.__sub__(p1,p2))
+print(p1.__mul__(p2)) 
+print(Point.__mul__(p1,p2))
+print(p1.__truediv__(p2)) 
+print(Point.__truediv__(p1,p2))
+
+##################################################
 
 
 
