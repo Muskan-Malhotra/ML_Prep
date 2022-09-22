@@ -105,6 +105,40 @@ class Mynewclass:
 print("Mynewclass:",Myclass.__bases__)
 
 
+##############################
+class Mynumber:
+            "This is a python number class"
+            num='integer number'
+            def add(a,b):
+                        c=a+b
+                        return c
+print("name: ",Mynumber.__name__) # access class name
+print("doc: ",Mynumber.__doc__) # access doc string
+print("module: ",Mynumber.__module__) # access class module
+print("base class name: ",Mynumber.__bases__) # access base classe
+print("Is object a base class for Mynumber? ",[object in cls.__bases__ for cls in {​​Mynumber} ])
+print("dict: ",Mynumber.__dict__) # access class namespace dict
+
+
+###############################
+class Employee:
+         id=211
+         name='Rimi'
+e1= Employee()
+print("id is exist? ",hasattr(e1,'id')) # returns true if 'id' attribute exists
+print("get name value: ",getattr(e1,'name') ) # returns value of 'id' attribute
+setattr(e1,'designation','HR')  # set attribute 'designation' at 'HR'
+print("added new value: ",  e1.designation)
+delattr(e1,'designation') #delete attribute 'designation'
+print( e1.designation)
+
+
+
+
+
+
+
+
 
 
 
