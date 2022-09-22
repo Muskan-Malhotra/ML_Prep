@@ -293,55 +293,56 @@ print(Point.__lt__(p1,p2)) # call method name with class
 
 '''
 ############ checking if object or not!! #######################
-class Calci1:  
-    def Sum(self,a,b):  
-        return a+b 
-class Calci2():  
-    def Div(self,a,b):  
-        return a/b
-c1=Calci1() 
-c2 = Calci2()  
-print(isinstance(c1,Calci2))
+# class Calci1:  
+#     def Sum(self,a,b):  
+#         return a+b 
+# class Calci2():  
+#     def Div(self,a,b):  
+#         return a/b
+# c1=Calci1() 
+# c2 = Calci2()  
+# print(isinstance(c1,Calci2))
 
-############is a sub class ? ####################
-class Calci1:  
-    def Sum(self,a,b):  
-        return a+b 
-class Calci2:  
-    def Mul(self,a,b):  
-        return a*b  
-class Calci3(Calci1,Calci2):  
-    def Div(self,a,b):  
-        return a/b  
-print(issubclass(Calci3,Calci2))  
-print(issubclass(Calci1,Calci2)) 
+# ############is a sub class ? ####################
+# class Calci1:  
+#     def Sum(self,a,b):  
+#         return a+b 
+# class Calci2:  
+#     def Mul(self,a,b):  
+#         return a*b  
+# class Calci3(Calci1,Calci2):  
+#     def Div(self,a,b):  
+#         return a/b  
+# print(issubclass(Calci3,Calci2))  
+# print(issubclass(Calci1,Calci2)) 
 
 
-############ Operator Overiding ##############
-class Animal: 
-    def speak(self): 
-        print("speaking") 
-class Dog(Animal): 
-    def speak(self): 
-        print("Barking") 
-d = Dog() 
-d.speak()
+# ############ Operator Overiding ##############
+# class Animal: 
+#     def speak(self): 
+#         print("speaking") 
+# class Dog(Animal): 
+#     def speak(self): 
+#         print("Barking") 
+# d = Dog() 
+# d.speak()
 
-########## Encapsulation #################
-class Bag:
-   def __init__(self):
-      self.a = "Bag-a"
-      self._b = "Bag-b"
-      self.__c = "Bag-c"
-b1 = Bag()
-print("a value:",b1.a)
-print("b value:",b1._b)
-print("c value:",b1._Bag__c)
-# print("c value:",b1.__c)
+# ########## Encapsulation #################
+# class Bag:
+#    def __init__(self):
+#       self.a = "Bag-a"
+#       self._b = "Bag-b"
+#       self.__c = "Bag-c"
+# b1 = Bag()
+# print("a value:",b1.a)
+# print("b value:",b1._b)
+# print("c value:",b1._Bag__c)
+# # print("c value:",b1.__c)
 
 ################## data abstraction ###############
+'''
 class Employee:
-  __count=0
+  __count = 0
   def __init__(self):
     Employee.__count=Employee.__count+1
   def display(self):
@@ -351,8 +352,9 @@ e1=Employee()
 e1.display()
 e2=Employee()
 e2.display()
-print(e1.__count)
+# print(e1.__count)
 
+###############################################################
 class Employee:
   __count = 0
   def __init__(self):
@@ -363,7 +365,7 @@ e1 = Employee()
 e1.display()
 e2 = Employee()
 e2.display()
-print(e1.__count)
+# print(e1.__count) #not printed coz private
 
 ##################### Polymorphism #############
 class Cat:
@@ -380,6 +382,106 @@ dogObj = Dog()
 makeSound(catObj)
 makeSound(dogObj)
 
+'''
+##################### Using super ############
+'''
+class Base1:
+  def __init__(self):
+    super().__init__()
+    self.name='kapil dev'
+
+class Base2:
+  def __init__(self):
+    super().__init__()
+    self.occupation='player'
+class Base3:
+  def __init__(self):
+    self.best_score=175
+    
+
+class Child(Base2,Base1,Base3):
+  def __init__(self):
+    super().__init__()
+    self.win= '1983' #child member
+ch=Child()
+print(Child.__mro__)
+print(ch.__dict__)
+
+
+'''
+
+######################################3
+#not use super in parent class
+'''
+class Base1:
+  def __init__(self):
+    self.name='kapil dev'
+
+class Base2:
+  def __init__(self):
+    self.occupation='player'
+class Base3:
+  def __init__(self):
+    self.best_score=175
+class Child(Base2,Base1,Base3):
+  def __init__(self):
+    super().__init__()
+    self.win= '1983' #child member
+ch=Child()
+print(Child.__mro__)
+print(ch.__dict__)
+'''
+###############################################
+'''
+class Base1:
+  def __init__(self):
+    self.name='kapil dev'
+        
+
+class Base2:
+  def __init__(self):
+    self.occupation='player'
+
+class Base3:
+  def __init__(self):
+    self.best_score=175
+
+class Child(Base2,Base1,Base3):
+  # def __init__(self): #won't work like this
+  def __init__(self):
+    #Base1.__init__(self)  #this won't work until
+    Base1.__init__(self)  ## pass in the init of child and parent equally
+    Base2.__init__(self)
+    Base3.__init__(self)
+    self.win= '1983' #child member
+
+ch=Child()
+print(Child.__mro__)  ###just to provide information about how super is flowing
+print(ch.__dict__)
+'''
+
+# '''
+class Base1:
+  def __init__(self,name):
+    self.name=name
+
+class Base2:
+  def __init__(self):
+    self.occupation='player'
+class Base3:
+  def __init__(self):
+    self.best_score=175
+class Child(Base2,Base1,Base3):
+  def __init__(self,name):
+    Base1.__init__(self,name)
+    Base2.__init__(self)
+    Base3.__init__(self)
+    self.win= '1983' #child member
+ch=Child('john')
+print(Child.__mro__)
+print(ch.__dict__)
+
+# '''
 
 
 
