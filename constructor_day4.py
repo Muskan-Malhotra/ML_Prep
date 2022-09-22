@@ -232,7 +232,7 @@ print(Point.__add__(p1,p2)) # call method name with class
 '''
 
 ##########################################
-
+'''
 class Point:
   def __init__(self, x , y ):
     self.x = x
@@ -272,8 +272,50 @@ print(p1.__mul__(p2))
 print(Point.__mul__(p1,p2))
 print(p1.__truediv__(p2)) 
 print(Point.__truediv__(p1,p2))
-
+'''
 ##################################################
+'''
+class Point:
+    def __init__(self, x , y ):
+        self.x = x
+        self.y = y
+    def __lt__(self,other):
+        self_mag = (self.x ** 2) + (self.y ** 2)
+        other_mag = (other.x ** 2) + (other.y ** 2)
+        return self_mag < other_mag 
+p1=Point(1,1)
+p2=Point(-2,-3)
+p3=p1< p2 # call method by using operator
+print(p3)
+print(p1.__lt__(p2)) # call method by name
+print(Point.__lt__(p1,p2)) # call method name with class
 
 
+'''
+############ checking if object or not!! #######################
+class Calci1:  
+    def Sum(self,a,b):  
+        return a+b 
+class Calci2():  
+    def Div(self,a,b):  
+        return a/b
+c1=Calci1() 
+c2 = Calci2()  
+print(isinstance(c1,Calci2))
+
+############is a sub class ? ####################
+class Calci1:  
+    def Sum(self,a,b):  
+        return a+b 
+class Calci2:  
+    def Mul(self,a,b):  
+        return a*b  
+class Calci3(Calci1,Calci2):  
+    def Div(self,a,b):  
+        return a/b  
+print(issubclass(Calci3,Calci2))  
+print(issubclass(Calci1,Calci2)) 
+
+
+############ Operator Overiding ##############
 
