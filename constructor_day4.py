@@ -460,7 +460,7 @@ print(Child.__mro__)  ###just to provide information about how super is flowing
 print(ch.__dict__)
 '''
 
-# '''
+'''
 class Base1:
   def __init__(self,name):
     self.name=name
@@ -481,10 +481,132 @@ ch=Child('john')
 print(Child.__mro__)
 print(ch.__dict__)
 
-# '''
+'''
+############ using parent function mutlilevel ###########
+'''
+class parent:
+  def __init__(self):
+    super().__init__()
+    self.game='cricket'
+
+class base1(parent): #parent is called
+  def __init__(self):
+    super().__init__()
+    self.name='kapil dev'
+class base2(parent):
+  def __init__(self):
+    super().__init__()
+    self.occupation='player'
+class base3:
+  def __init__(self):
+    super().__init__()
+    self.best_score=175
+class child(base1,base2,base3):
+  def __init__(self):
+    super().__init__()
+ch=child()
+print(child.__mro__)
+print(ch.__dict__)
 
 
+'''
+######### multi level ##########
+'''
+class parent:
+  def __init__(self):
+    super().__init__()
+    self.game='cricket'
 
+class base1(parent):
+  def __init__(self):
+    super().__init__()
+    self.name='kapil dev'
+class base2(base1):
+  def __init__(self):
+    super().__init__()
+    self.occupation='player'
+class base3:
+  def __init__(self):
+    self.best_score=175
+class child(base2,base3):
+  def __init__(self):
+    super().__init__()
+ch=child()
+print(child.__mro__)
+print(ch.__dict__)
+
+'''
+
+############## POLYMORPHISM OVERIDING Using this method ########
+#polymorphishm overriding
+'''
+class person:
+  def __init__(self):
+    self.name='person'
+    super().__init__()
+
+  def display(self):
+    print(self.name)
+class student(person):
+  def __init__(self):
+    self.course='java'
+    super().__init__()
+
+  def display(self):
+    print(self.name)
+    print(self.course)
+
+st=student()
+st.display()
+'''
+#### abstract method which we can extract in children ######
+'''
+from abc import ABC,abstractmethod
+class switch(ABC):
+  @abstractmethod
+  def switch_on():
+      pass
+
+  @abstractmethod
+  def switch_off():
+      pass
+
+class plastic_switch(switch):
+    def switch_on():
+        print('plastic swtich on')
+
+    def switch_off():
+        print('plastic swtich off')
+class wifi_switch(switch):
+  def switch_on():
+    print('wifi swtich on')
+
+  def switch_off():
+    print('wifi swtich off')
+
+class Fan:
+  def __init__(self,switch):
+    self.state=False
+    self.switch=switch
+
+  def get_state(self):
+    return self.state
+  def turn_on(self):
+    self.state=True
+    switch.switch_on()
+  def turn_off(self):
+    self.state=False
+    switch.switch_off()
+
+pl_sw=plastic_switch()
+fn=Fan(pl_sw)
+fn.turn_on()
+print(fn.get_state())
+fn.turn_off()
+print(fn.get_state())
+
+
+'''
 
 
 
