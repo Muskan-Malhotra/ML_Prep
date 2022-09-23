@@ -80,85 +80,146 @@
 
 
 
-############## using lambda function #######
-##### Even Number ############
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# ############## using lambda function #######
+# ##### Even Number ############
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-num = filter(lambda x:x if x%2==0 else "",numbers)
-print(list(num))
+# num = filter(lambda x:x if x%2==0 else "",numbers)
+# print(list(num))
 
-########## Vowels ##############
-letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
-vow = ['a','e','i','o','u']
-vowels = filter(lambda x:x if x in vow else "",letters)
-print(list(vowels))
+# ########## Vowels ##############
+# letters = ['a', 'b', 'd', 'e', 'i', 'j', 'o']
+# vow = ['a','e','i','o','u']
+# vowels = filter(lambda x:x if x in vow else "",letters)
+# print(list(vowels))
 
-############ Iterators ###########
-t1= ("apple", "banana", "cherry")
-myit = iter(t1)
-print(next(myit))
-print(next(myit))
-print(next(myit))
+# ############ Iterators ###########
+# t1= ("apple", "banana", "cherry")
+# myit = iter(t1)
+# print(next(myit))
+# print(next(myit))
+# print(next(myit))
 
-######### iter with class
-class MyNumbers:
-  def __iter__(self):
-    self.a = 1
-    return self
+# ######### iter with class
+# class MyNumbers:
+#   def __iter__(self):
+#     self.a = 1
+#     return self
 
-  def __next__(self):
-    x = self.a
-    self.a += 1
-    return x
+#   def __next__(self):
+#     x = self.a
+#     self.a += 1
+#     return x
 
-myclass = MyNumbers()
-myiter = iter(myclass)
+# myclass = MyNumbers()
+# myiter = iter(myclass)
 
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
+# print(next(myiter))
+# print(next(myiter))
+# print(next(myiter))
+# print(next(myiter))
+# print(next(myiter))
 
-#########  stop iteration  exception 
-class MyNumbers:
-  def __iter__(self):
-    self.a = 1
-    return self
-  def __next__(self):
-    if self.a <= 4:
-      x = self.a
-      self.a += 1
-      return x
-    else:
-      raise StopIteration
-myclass = MyNumbers()
-myiter = iter(myclass)
-for x in myiter:
-  print(x)
+# #########  stop iteration  exception 
+# class MyNumbers:
+#   def __iter__(self):
+#     self.a = 1
+#     return self
+#   def __next__(self):
+#     if self.a <= 4:
+#       x = self.a
+#       self.a += 1
+#       return x
+#     else:
+#       raise StopIteration
+# myclass = MyNumbers()
+# myiter = iter(myclass)
+# for x in myiter:
+#   print(x)
 
-############ generators ##############
-def multiple_yield():  
-    str1 = "First String"  
-    yield str1  
-    str2 = "Second string"  
-    yield str2  
-    str3 = "Third String"  
-    yield str3  
-obj = multiple_yield()  
-print(next(obj))  
-print(next(obj))  
-print(next(obj))  
+# ############ generators ##############
+# def multiple_yield():  
+#     str1 = "First String"  
+#     yield str1  
+#     str2 = "Second string"  
+#     yield str2  
+#     str3 = "Third String"  
+#     yield str3  
+# obj = multiple_yield()  
+# print(next(obj))  
+# print(next(obj))  
+# print(next(obj))  
 
-################# list and generator 
-list = [1,2,3,4,5,6,7] 
-# List Comprehension  
-z = [x**3 for x in list]  
-print(z)
-# Generator expression  
-a = (x**3 for x in list)  
-print(a) 
-print(next(a))
+# ################# list and generator 
+# list = [1,2,3,4,5,6,7] 
+# # List Comprehension  
+# z = [x**3 for x in list]  
+# print(z)
+# # Generator expression  
+# a = (x**3 for x in list)  
+# print(a) 
+# print(next(a))
+
+########### decorators ######
+def greet():
+    print('Hello! ', end='')
+def mydecorator(fn):
+    fn()
+    print('How are you?')
+mydecorator(greet)
+
+############################
+def mydecoratorfunction(some_function): # decorator function
+    def inner_function(): 
+        # write code to extend the behavior of some_function()
+        some_function() # call some_function
+        # write code to extend the behavior of some_function()
+    return inner_function # return a wrapper function
+
+##################
+
+    #decorator function
+def mydecorator(fn):
+    def inner_function():        
+        fn()
+        print('How are you?')
+    return inner_function
+#applying decorator
+@mydecorator
+def greet():
+  print('Hello! ', end='')
+greet()
+@mydecorator
+def dosomething():
+  print('I am doing something.', end='')
+dosomething()
+
+
+############# property decorator
+class Student:  
+    def __init__(self,name,grade):  
+         self.name = name  
+         self.grade = grade  
+    @property  
+    def display(self):  
+         return self.name + " got grade " + self.grade  
+stu = Student("John","B")  
+print("Name:", stu.name)  
+print("Grade:", stu.grade)  
+print(stu.display) 
+
+######## static decorator ########
+class Person:  
+     @staticmethod  
+     def hello():  
+          print("Hello Peter")  
+per = Person()  
+per.hello()  
+Person.hello()
+
+#################### Types of Decorators with arguments #######
+
+
 
 
 
