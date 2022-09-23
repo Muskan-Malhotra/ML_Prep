@@ -159,7 +159,7 @@
 # a = (x**3 for x in list)  
 # print(a) 
 # print(next(a))
-
+'''
 ########### decorators ######
 def greet():
     print('Hello! ', end='')
@@ -216,8 +216,63 @@ class Person:
 per = Person()  
 per.hello()  
 Person.hello()
+'''
 
 #################### Types of Decorators with arguments #######
+## we don't use it much!!
+import functools  
+def repeat(num):
+    #Creating and returning a wrapper function  
+    def decorator_repeat(func):  
+        @functools.wraps(func)  
+        def wrapper(*args,**kwargs):  
+            for _ in range(num):  
+                value = func(*args,**kwargs)  
+            return value  
+        return wrapper  
+    return decorator_repeat  
+#Here we are passing num as an argument which repeats the print function  
+@repeat(num=5)  
+def function1(name):  
+     print(f"{name}")
+function1('Hello Python')
+
+######## Types of decorators: stateful decorator ######
+import functools
+def count_function(func):
+    @functools.wraps(func)
+    def wrapper_count_calls(*args, **kwargs):
+        wrapper_count_calls.num_calls += 1
+        print(f"Call{wrapper_count_calls.num_calls}​​ of {func.__name__!r}​​")
+        return func(*args, **kwargs)
+    wrapper_count_calls.num_calls = 0
+    return wrapper_count_calls  
+@count_function  
+def say_hello():
+    print("Say Hello")  
+say_hello()  
+say_hello() 
+
+####### classes as decorators ##############
+import functools   
+class Count_Calls:
+    def __init__(self, func):
+        functools.update_wrapper(self, func)
+        self.func = func
+        self.num_calls = 0
+    def __call__(self, *args, **kwargs):
+        self.num_calls += 1
+        print(f"Call{self.num_calls}​​ of {self.func.__name__!r}​​")
+        return self.func(*args, **kwargs)  
+@Count_Calls  
+def say_hello():
+    print("Say Hello")  
+say_hello()  
+say_hello()
+
+
+
+
 
 
 
