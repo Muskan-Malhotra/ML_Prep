@@ -82,5 +82,14 @@ with ZipFile('my_new_files.zip','w') as zip:
         zip.write(file)
 print('All files zipped successfully!') 
 
+############################ Append code #########
+from zipfile import ZipFile
+import os
+# writing files to a zipfile
+with ZipFile('my_new_files.zip','a') as zip:
+    # writing new file
+    zip.write('newzip/newtest.txt.txt')  #focus on extension always write complete
+print('All files zipped successfully!')
+
 
 
