@@ -1,3 +1,4 @@
+'''
 # import openpyxl module 
 import openpyxl 
 # Give the location of the file 
@@ -119,7 +120,7 @@ sheet.column_dimensions['B'].width = 20
 wb.save('sample.xlsx')
 
 
-############## merginf columns
+############## merging columns
 wb = openpyxl.Workbook() 
 sheet = wb.active 
   
@@ -171,9 +172,9 @@ sheet.cell(row = 4, column = 4).value = "Welcome Python"
 sheet.cell(row = 4, column = 4).font = Font(size = 24, name = 'Times New Roman') 
   
 wb.save('sample.xlsx')
-
+'''
 ######### chart 
-
+import openpyxl
 # import BarChart class from openpyxl.chart sub_module
 from openpyxl.chart import BarChart, Reference
 # wb = openpyxl.Workbook()
@@ -182,7 +183,7 @@ sheet = wb.active
 # write o to 9 in 1st column of the active sheet
 for i in range(10):
     sheet.append([i])
-    
+
 # create data for plotting
 values = Reference(sheet, min_col=1, min_row=1,
                    max_col=1, max_row=10)
@@ -194,7 +195,7 @@ chart.y_axis.title = " Y_AXIS " # set the title of the y-axis
 # add chart to the sheet the top-left corner of a chart is anchored to cell E2 .
 sheet.add_chart(chart, "E2")
 # save the file
-wb.save("sample.xlsx")
+wb.save("sample1.xlsx")
 
 
 ###### working on images
@@ -213,8 +214,8 @@ wb.save("sample.xlsx")
 # sheet.add_image(img, 'A2') 
 # # Saving the workbook created
 # wb.save('sample.xlsx')
-
-
+'''
+import openpyxl
 #######################################
 from openpyxl.drawing.image import Image
   
@@ -235,6 +236,110 @@ sheet=wb.worksheets[0] #access student worksheet
 cell_obj=sheet['A1':'B4']
 for c1,c2 in cell_obj:
        print(c1.value, c2.value)
+
+######### creating another worksheet
+from openpyxl import Workbook
+wb = Workbook()
+sheet1 = wb.active
+sheet1.title = "UserData" #sheet1 name
+sheet2 = wb.create_sheet("SalaryData", 0)#sheet2 name
+print('Succcessfully sheets created')
+wb.save("Employee_Sal.xlsx")
+'''
+
+######################################
+######################################
+##################Task ###############
+###create a sheet with two worksheet names
+from openpyxl import Workbook
+wb = Workbook()
+sheet1 = wb.active
+sheet1.title = "UserData" #sheet2 name
+sheet2 = wb.create_sheet("SalaryData", 0)#sheet1 name
+print('Succcessfully sheets created')
+wb.save("Employee_Sal.xlsx")
+
+    
+#####add data into each worksheet
+from openpyxl import *
+wb = load_workbook("Employee_Sal.xlsx")
+#add data in Userdata worksheet
+sheet1 = sheet=wb.worksheets[1]
+data=[('User_ID','Name','Address','Phone','Status'),
+(1011,'John Thomas','102,bronze pike,CA','+1-205-4502-4578','Active'),
+(1012,'Peter Marker','103,summy pike,CA','+1-225-4519-4578','Active'),
+(1013,'Sam Luthar','201,color tower,CA','+1-216-4002-4578','Inactive'),
+(1014,'Jow Hankins','121,rock town,CA','+1-217-2012-4578','Active')]
+for rec in data:
+    sheet1.append(rec)
+#add data in SalaryData worksheet
+sheet2 = sheet=wb.worksheets[0]
+data=[('User_ID','Salary','Bonus','Increment','Total Salary'),
+(1011,25000,500,0,0),
+(1012,30000,600,400,0),
+(1013,5000,0,0,0),
+(1014,20000,1500,500,0)]
+
+for rec in data:
+    sheet2.append(rec)
+print('Succcessfully data added')
+
+######################################
+#####do the calculation on Salarydata sheet
+from openpyxl import *
+wb = load_workbook("Employee_Sal.xlsx")
+
+#add data in salarydata worksheet
+sheet = wb.worksheets[0]
+#add calculated value in Total salary column
+row = sheet.max_row
+for i in range(2,row+1):
+#'=SUM(B2:D2)'
+    sheet['E'+str(i)] ='= SUM('+'B'+str(i)+':'+'D'+str(i)+')'
+print('successfully calculated')
+wb.save("Employee_Sal.xlsx")
+
+
+import openpyxl
+wb = openpyxl.load_workbook("Employee_Sal.xlsx",data_only=True)
+
+print('*'*15+'UserData')
+#access worksheets
+sheet1=wb.worksheets[1]#access student worksheet
+cell_obj1=sheet1['A1':'E5']
+for c1,c2,c3,c4,c5 in cell_obj1:
+    print(str(c1.value)+'\t'+str(c2.value)+'\t'+str(c3.value)+'\t'+str(c4.value)\
++'\t'+str(c5.value))
+print()
+print('*'*15+'SalaryData')
+#access worksheets
+sheet2=wb.worksheets[0] #access employee worksheet
+#print(sheet2['E5'].data_type)
+cell_obj2=sheet2['A1':'E5']
+for c1,c2,c3,c4,c5 in cell_obj2:
+    print(str(c1.value)+'\t'+str(c2.value)+'\t'+str(c3.value)+'\t'+str(c4.value)\
++'\t'+str(c5.value))
+
+
+########################################
+# python -c "import os, sys; print(os.path.dirname(sys.executable))"
+
+# _init_
+# from .msg import *
+# from .sen import *
+
+import openpyxl
+wb = openpyxl.load_workbook('Employee_Sal.xlsx', data_only = True)
+ws = wb['SalaryData']
+
+#print(ws['E2'].data_type)
+print(ws['B2'].value)
+
+
+
+
+
+
 
 
 
