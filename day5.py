@@ -50,4 +50,37 @@ newzip.printdir()
 newzip.extract('testzip0/test.txt.txt')
 print('Successfully all files extracted')
 
+#########################################
+import zipfile
+#open zip file
+newzip=zipfile.ZipFile('testzip0.zip','r')
+#print zip file detils
+newzip.printdir()
+#extract all files of zip folder
+newzip.extractall('testzip0')
+print('Successfully all files extracted')
+##########################################
+from zipfile import ZipFile
+import os
+#get file path of files of folder
+# initializing empty file paths list
+file_paths = []
+# crawling through directory and subdirectories
+for root, directories, files in os.walk('./newzip'):
+    for filename in files:
+        # join the two strings in order to form the full filepath.
+        filepath = os.path.join(root, filename)
+        file_paths.append(filepath)
+# printing the list of all files to be zipped
+print('Following files will be zipped of newzip folder:')
+for file_name in file_paths:
+    print(file_name)
+# writing files to a zipfile
+with ZipFile('my_new_files.zip','w') as zip:
+    # writing each file one by one
+    for file in file_paths:
+        zip.write(file)
+print('All files zipped successfully!') 
+
+
 
