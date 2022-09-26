@@ -1,9 +1,0 @@
-[16:41] Saurika  Tiwary(Vatika82-N) (Guest)
-    Menu Options:
-
-1.Add Teacher Data
-2.Display All Teachers Data
-3.Update Teacher Data By ID
-4.Delete Teacher Data By ID
-5.Search Teacher Data By ID
-6.Exit
